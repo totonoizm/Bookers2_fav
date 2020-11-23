@@ -14,6 +14,14 @@
 
     <div class='body'>
       <div class='container'>
+        <% if user_signed_in? %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :word, placeholder: "検索ワードを入力" %>
+          <%= f.select :genre, [["user", "user"], ["book", "book"]] %>
+          <%= f.select :direction, [["完全一致","完全一致"], ["前方一致", "前方一致"], ["後方一致", "後方一致"], ["部分一致","部分一致"]] %>
+          <%= f.submit "検索" %>
+          <% end %>
+        <% end %>
         <p id="notice"><%= notice %></p>
 
         <%= yield %>
